@@ -1,6 +1,6 @@
 # Dependent Questions jQuery Plugin
 
-**Make a form question dependent on some other question simply by adding `data-depends-on="inputName=value"` to your wrapper HTML element**
+**Make a form question's visibility dependent on some other question simply by adding `data-depends-on="inputName=value"` to your wrapper HTML element. No other code required.**
 
 This plugin allows you to specify that a particular form question should only be
 made visible if the answer to a previous question is a specific value. It does this
@@ -26,6 +26,8 @@ by making use of HTML5 data attributes. For example:
 
 In the above example, the question "What else would you like to add?" would only be
 displayed when the first question is answered as "yes".
+
+Note that the `data-depends-on` attribute refers to the form input **name**, not an ID.
 
 To use plugin, add something like the following to your web page:
 
