@@ -62,6 +62,7 @@
         dataRe = new RegExp('([^=]*)=(.*)');
 
         // Fetch all the elements with 'data-depends-on' attributes.
+        if (!this.element.find) { this.element = $(this.element); }
         toHide = this.element.find('[data-depends-on]');
 
         // Event handler for when a toggling element changes value.
