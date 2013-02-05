@@ -14,7 +14,7 @@
         }
     ],
     "dependencies" : { "jquery" : ">=1.8" },
-    "description"  : "Make a form question's visibility dependent on some other question simply by adding `data-depends-on=\"inputName=value\"` to your wrapper HTML element. No other code required.",
+    "description"  : "Make a form question's visibility dependent on some other question simply by adding `data-depends-on=\"inputName=value\"` to your wrapper HTML element. No other code required. Many thanks to Squiz for supporting the development of this plugin.",
     "keywords": [
         "forms",
         "HTML5"
