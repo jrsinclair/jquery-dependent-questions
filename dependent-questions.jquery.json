@@ -1,0 +1,13 @@
+{
+    "name"     : "dependent-questions",
+    "version"  : "1.0",
+    "title"    : "Dependent Questions",
+    "author"   : "James Sinclair",
+    "licenses" : [
+        {
+            "type" : "MIT",
+            "url"  : "http://opensource.org/licenses/MIT"
+        }
+    ],
+    "dependencies" : ["jquery"]
+}
