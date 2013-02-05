@@ -2,12 +2,16 @@
     "name"     : "dependent-questions",
     "version"  : "1.0.0",
     "title"    : "Dependent Questions",
-    "author"   : "James Sinclair",
+    "author"   : {
+        "name" : "James Sinclair",
+        "email" : "jrsinclair@gmail.com",
+        "url"   : "https://github.com/jrsinclair"
+    },
     "licenses" : [
         {
             "type" : "MIT",
             "url"  : "http://opensource.org/licenses/MIT"
         }
     ],
-    "dependencies" : ["jquery"]
+    "dependencies" : { "jquery" : ">=1.8" }
 }
