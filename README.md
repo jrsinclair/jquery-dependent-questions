@@ -50,3 +50,7 @@ $("myform").dependentQuestions({
     duration: "slow"   // This can be 'slow', 'fast', or a number of milliseconds
 });
 `````
+
+## Thanks
+
+Development of this plugin was supported by [Squiz](http://squiz.com.au).
