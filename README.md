@@ -23,7 +23,7 @@ by making use of HTML5 data attributes. For example:
     <div class="form-question">
       <label for="extra">What else would you like to add?</label>
       <input type="text" name="extra" id="extra"/>
-      </div>
+    </div>
   </fieldset>
 </form>
 `````
