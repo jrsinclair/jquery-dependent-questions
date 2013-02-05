@@ -18,11 +18,13 @@ by making use of HTML5 data attributes. For example:
       <input type="radio" name="more" value="yes" id="more-yes"/>
       <label for="more-yes">Yes</label>
     </span>
+  </fieldset>
   <fieldset data-depends-on="more=yes">
-  <div class="form-question">
-    <label for="extra">What else would you like to add?</label>
-    <input type="text" name="extra" id="extra"/>
-  </div>
+    <div class="form-question">
+      <label for="extra">What else would you like to add?</label>
+      <input type="text" name="extra" id="extra"/>
+      </div>
+  </fieldset>
 </form>
 `````
 
