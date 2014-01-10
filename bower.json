@@ -1,0 +1,10 @@
+{
+  "name": "jquery-dependent-questions",
+  "version": "1.0.3",
+  "main": "jquery.dependent-questions.js",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies" : { "jquery" : ">=1.8" }
+}
