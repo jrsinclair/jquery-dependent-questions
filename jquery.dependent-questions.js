@@ -13,7 +13,7 @@
 /*jslint nomen:true, browser:true*/
 /*globals jQuery*/
 ;
-(function ($, window, document, undefined) {
+(function ($, undefined) {
     "use strict";
     // See http://bit.ly/rc0Nzl for reasoning on why window, document and undefined
     // are passed in here.
@@ -48,7 +48,7 @@
 
 
     // Configuration and defaults.
-    var pluginName = 'dependentQuestions',
+    var pluginName = "dependentQuestions",
         defaults = {
             "effect": "slide",
             // Must be one of 'slide' or 'fade'
@@ -88,28 +88,28 @@
         dependentsMap = {};
 
         // Regular expression for parsing data attribute.
-        dataRe = new RegExp('([^=]*)=(.*)');
+        dataRe = new RegExp("([^=]*)=(.*)");
 
         // Fetch all the elements with 'data-depends-on' attributes.
         if (!this.element.find) { this.element = $(this.element); }
-        questions = this.element.find('[data-depends-on]');
+        questions = this.element.find("[data-depends-on]");
 
         // Get the value of a form element by name, even if it is a radio button
         // or checkbox
         function getValueByName(inputName) {
-            var multiInputs, el, elType, multi, modifier, checkVals;
-            multiInputs = ['radio', 'checkbox'];
-            el = $('[name="' + inputName + '"]');
+            var multiInputs, el, elType, multi, checkVals;
+            multiInputs = ["radio", "checkbox"];
+            el = $("[name='" + inputName + "']");
             if (el.length === 0) { return undefined; }
 
-            elType = el.attr('type');
+            elType = el.attr("type");
             multi  = contains(multiInputs, elType);
             if (!multi) { return el.val(); }
 
-            if (elType === 'radio') { return el.filter(':checked').val(); }
+            if (elType === "radio") { return el.filter(":checked").val(); }
 
-            if (elType === 'checkbox') {
-                checkVals = $.map(el.filter(':checked'), function (checkbox) {
+            if (elType === "checkbox") {
+                checkVals = $.map(el.filter(":checked"), function (checkbox) {
                     return $(checkbox).val();
                 });
                 return checkVals;
@@ -120,13 +120,13 @@
         function onTogglerChange(evt) {
             var toggler, dependents, showVal, val, show, effectFunc, action;
             toggler    = $(evt.target);
-            dependents = toggler.data('dependents');
-            showVal    = toggler.data('showVal');
-            val        = getValueByName(toggler.attr('name'));
-            show       = (typeof val === 'object')
+            dependents = toggler.data("dependents");
+            showVal    = toggler.data("showVal");
+            val        = getValueByName(toggler.attr("name"));
+            show       = (typeof val === "object")
                        ? contains(val, showVal)
                        : (val === showVal);
-            action     = (show) ? 'show' : 'hide';
+            action     = (show) ? "show" : "hide";
             effectFunc = effectsMap[effect][action];
             dependents[effectFunc](duration);
         }
@@ -135,7 +135,7 @@
         function addMapEntry(i, element) {
             var data, el;
             el   = $(element);
-            data = el.data('depends-on');
+            data = el.data("depends-on");
             if (!dependentsMap[data]) {
                 dependentsMap[data] = el;
             } else {
@@ -154,16 +154,16 @@
             showVal = matches[2];
 
             // Grab the relevant elements
-            toggler = $('[name="' + name + '"]');
-            toggler.data('dependents', dependents);
-            toggler.data('showVal', showVal);
+            toggler = $("[name='" + name + "']");
+            toggler.data("dependents", dependents);
+            toggler.data("showVal", showVal);
             toggler.change(onTogglerChange);
         }
         $.each(dependentsMap, setListener);
 
         // Set the initial state of each dependent question to match form state.
         function showHideByValue(key, dependents) {
-            var matches, name, showVal, toggler, val, func, show;
+            var matches, name, showVal, val, func, show;
             // Parse the key value
             matches = dataRe.exec(key);
             if (!matches) { return; }
@@ -171,14 +171,13 @@
             showVal = matches[2];
 
             // Work out whether or not to show the value
-            toggler = $('[name="' + name + '"]');
-            val     = getValueByName(name);
-            if (typeof val === 'object') {
+            val = getValueByName(name);
+            if (typeof val === "object") {
                 show = contains(val, showVal);
             } else {
                 show = (val === showVal);
             }
-            func = (show) ? 'show' : 'hide';
+            func = (show) ? "show" : "hide";
             dependents[func]();
         }
         $.each(dependentsMap, showHideByValue);
@@ -188,14 +187,14 @@
     // preventing against multiple instantiations
     $.fn[pluginName] = function (options) {
         return this.each(function () {
-            if (!$.data(this, 'plugin_' + pluginName)) {
+            if (!$.data(this, "plugin_" + pluginName)) {
                 $.data(
                     this,
-                    'plugin_' + pluginName,
+                    "plugin_" + pluginName,
                     new QuestionToggler(this, options)
                 );
             }
         });
     };
 
-}(jQuery, window, document));
+}(jQuery, undefined));
