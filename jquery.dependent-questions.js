@@ -102,17 +102,21 @@
 
         // Event handler for when a toggling element changes value.
         function onTogglerChange(evt) {
-            var toggler, dependents, showVal, val, show, effectFunc, action;
+            var toggler, toggleSpec;
             toggler    = $(evt.target);
-            dependents = toggler.data("dependents");
-            showVal    = toggler.data("showVal");
-            val        = getValueByName(toggler.attr("name"));
-            show       = (typeof val === "object")
-                       ? contains(val, showVal)
-                       : (val === showVal);
-            action     = (show) ? "show" : "hide";
-            effectFunc = effectsMap[effect][action];
-            dependents[effectFunc](duration);
+            toggleSpec = toggler.data("toggle-spec") || [];
+            $.each(toggleSpec, function(i, spec) {
+                var dependents, showVal, val, show, effectFunc, action;
+                dependents = spec.dependents;
+                showVal    = spec.showVal;
+                val        = getValueByName(toggler.attr("name"));
+                show       = (typeof val === "object") ?
+                             contains(val, showVal) :
+                             (val === showVal);
+                action     = (show) ? "show" : "hide";
+                effectFunc = effectsMap[effect][action];
+                dependents[effectFunc](duration);
+            });
         }
 
         // Create a map of things that need to be toggled.
@@ -130,7 +134,8 @@
 
         // Create event listeners
         function setListener(key, dependents) {
-            var matches, name, showVal, toggler;
+            var matches, name, showVal, toggler, toggleSpec;
+
             // Parse the key value
             matches = dataRe.exec(key);
             if (!matches) { return; }
@@ -138,9 +143,13 @@
             showVal = matches[2];
 
             // Grab the relevant elements
-            toggler = $("[name='" + name + "']");
-            toggler.data("dependents", dependents);
-            toggler.data("showVal", showVal);
+            toggler    = $("[name='" + name + "']");
+            toggleSpec = toggler.data("toggle-spec") || [];
+            toggleSpec.push({
+                dependents : dependents,
+                showVal    : showVal
+            });
+            toggler.data("toggle-spec", toggleSpec);
             toggler.change(onTogglerChange);
         }
         $.each(dependentsMap, setListener);
