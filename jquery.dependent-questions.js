@@ -18,32 +18,16 @@
     // See http://bit.ly/rc0Nzl for reasoning on why window, document and undefined
     // are passed in here.
 
-
-    // The some() method is not implemented in some browsers.
-    // See https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/some
-    // for the origin of this polyfill.
-    if (!Array.prototype.some) {
-        Array.prototype.some = function (fun, thisp) {
-            var t, len, i;
-            if (this === null) { throw new TypeError(); }
-
-            t   = Object(this);
-            len = t.length >>> 0;
-            if (typeof fun !== "function") { throw new TypeError(); }
-
-            for (i = 0; i < len; i += 1) {
-                if (i in t && fun.call(thisp, t[i], i, t)) { return true; }
-            }
-            return false;
-        };
-    }
-
     // Return true if haystack contains needle 
     function contains(haystack, needle) {
-        function equals(haystrand) {
-            return haystrand === needle;
+        var len = haystack.length,
+            i   = 0;
+        for (; i < len; i++) {
+            if (haystack[i] === needle) {
+                return true;
+            }
         }
-        return haystack.some(equals);
+        return false;
     }
 
 
