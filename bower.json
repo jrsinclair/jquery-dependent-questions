@@ -1,6 +1,6 @@
 {
   "name": "jquery-dependent-questions",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "jquery.dependent-questions.js",
   "ignore": [
     ".jshintrc",
