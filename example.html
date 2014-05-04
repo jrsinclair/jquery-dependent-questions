@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+  />
+</head>
+
+<body>
+  <div class="container">
+    <form action="?" id="myform">
+      <h1>JQuery Dependent Questions Examples</h1>
+      <h2>Basic example with radio buttons</h2>
+      <fieldset class="form-question">
+        <legend>Would you like to see another question?</legend>
+        <span>
+          <input type="radio" name="more" value="no" id="more-no" />
+          <label for="more-no">No</label>
+        </span>
+        <span>
+          <input type="radio" name="more" value="yes" id="more-yes" />
+          <label for="more-yes">Yes</label>
+        </span>
+        <fieldset data-depends-on="more=yes">
+          <div class="form-question">
+            <label for="extra">What else would you like to add?</label>
+            <input type="text" name="extra" id="extra" />
+          </div>
+        </fieldset>
+      </fieldset>
+      <h2>Questions depending on &lt;select&gt;</h2>
+      <fieldset>
+        <legend>Which question set would you like to show?</legend>
+        <div class="form-question">
+          <label for="sel">Questions set:</label>
+          <select name="sel" id="sel">
+            <option>show set 1</option>
+            <option>show set 2</option>
+          </select>
+        </div>
+        <div class="form-question" data-depends-on="sel=show set 1">
+          <label for="extra2">This is extra question 1</label>
+          <input type="text" name="extra" id="extra2" />
+        </div>
+        <div class="form-question" data-depends-on="sel=show set 2">
+          <label for="extra3">This is extra question 2</label>
+          <input type="text" name="extra" id="extra3" />
+        </div>
+      </fieldset>
+    </form>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="jquery.dependent-questions.js"></script>
+    <script>
+    $('#myform').dependentQuestions();
+    </script>
+    </script>
+</body>
+
+</html>
